@@ -54,12 +54,17 @@ function App() {
     const prediction = await model.predict(webcam.canvas);
     for (let i = 0; i < maxPredictions; i++) {
       if (prediction[0].probability.toFixed(2) >= 0.80) {
-        setDetectedType("Open");
+        setDetectedType("Blød plastik");
       } else if (prediction[1].probability.toFixed(2) >= 0.80) {
-        setDetectedType("Closed");
+        setDetectedType("Plastik flaske");
+
       } else if (prediction[2].probability.toFixed(2) >= 0.80) {
-        setDetectedType("Peace");
-      } else {
+        setDetectedType("Mobil telefon");
+      } else if (prediction[3].probability.toFixed(2) >= 0.80) {
+        setDetectedType("Briller");
+      } else if (prediction[4].probability.toFixed(2) >= 0.80) {
+        setDetectedType("Dåse");
+      } else if (prediction[5].probability.toFixed(2) >= 0.80) {
         setDetectedType("");
       }
     }
